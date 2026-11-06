@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TΔLE — Proyecto Final</title>
+  <style>
+    :root {
+      --bg-deep-purple: #23014B;
+      --bg-darker: #120029;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(240, 166, 13, 0.2);
+      --nebula-purple: #0751B5;
+      --cloud-purple: #8E44AD;
+      --rocket-gold: #F0A60D;
+      --rocket-gold-hover: #ffd166;
+      --text-main: #FFFFFF;
+      --text-muted: #D0C4E8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Bahnschrift, 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background-color: var(--bg-deep-purple);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(142, 68, 173, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(7, 81, 181, 0.2) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      width: 100%;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(18, 0, 41, 0.6);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(240, 166, 13, 0.15);
+    }
+
+    /* LOGO HORIZONTAL TΔLE */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .rocket-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--rocket-gold), #B37A00);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(240, 166, 13, 0.4);
+    }
+
+    .rocket-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--bg-darker);
+    }
+
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: var(--rocket-gold);
+      line-height: 1;
+    }
+
+    .logo-subtitle {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--rocket-gold);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 8%;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      max-width: 580px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: rgba(240, 166, 13, 0.12);
+      border: 1px solid var(--rocket-gold);
+      color: var(--rocket-gold);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #FFFFFF 30%, var(--rocket-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--rocket-gold), #D48C00);
+      color: var(--bg-darker);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 0 4px 20px rgba(240, 166, 13, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(240, 166, 13, 0.5);
+    }
+
+    /* EMBLEM GRAPHIC */
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .emblem-container {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142,68,173,0.3) 0%, rgba(18,0,41,0.8) 70%);
+      border: 3px solid var(--rocket-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 50px rgba(142, 68, 173, 0.4), inset 0 0 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .emblem-rocket {
+      font-size: 4.5rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 0 10px rgba(240, 166, 13, 0.6));
+    }
+
+    .emblem-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: var(--rocket-gold);
+    }
+
+    .emblem-stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* PROJECT SHOWCASE SECTION */
+    .section {
+      padding: 5rem 8%;
+      background: rgba(18, 0, 41, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-subtitle {
+      color: var(--rocket-gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      display.grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2.2rem;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--rocket-gold);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      color: var(--rocket-gold);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 8%;
+      text-align: center;
+      border-top: 1px solid rgba(240, 166, 13, 0.15);
+      background: var(--bg-darker);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    footer p {
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.8rem;
+      }
+
+      .emblem-container {
+        width: 280px;
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / LOGO HORIZONTAL -->
+  <header>
+    <a href="#" class="brand-logo">
+      <div class="rocket-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2.5s-4.5 4.5-4.5 10.5c0 3 1.5 5 2.5 6l1 2 1-2c1-1 2.5-3 2.5-6C16.5 7 12 2.5 12 2.5zM9.5 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+        </svg>
+      </div>
+      <div class="logo-text-group">
+        <span class="logo-title">TΔLE</span>
+        <span class="logo-subtitle">SINALOA • 2026</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#visu">Proyecto</a></li>
+        <li><a href="#identidad">Identidad</a></li>
+        <li><a href="#especificaciones">Módulos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="visu">
+    <div class="hero-content">
+      <span class="badge">Proyecto Final • 2026</span>
+      <h1 class="hero-title">TΔLE</h1>
+      <p class="hero-description">
+        Visualización integral del proyecto TΔLE. Una plataforma espacial moderna desarrollada con la identidad gráfica oficial Space Deep Purple y acentos dorados de alta precisión.
+      </p>
+      <a href="#identidad" class="btn-primary">
+        Explorar Visualización
+      </a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="emblem-container">
+        <div class="emblem-stars"></div>
+        <div class="emblem-rocket">🚀</div>
+        <div class="emblem-title">TΔLE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT SHOWCASE / IDENTIDAD -->
+  <section class="section" id="identidad">
+    <div class="section-header">
+      <p class="section-subtitle">Recursos & Estructura</p>
+      <h2 class="section-title">Componentes del Proyecto</h2>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3 class="card-title">Paleta Espacial</h3>
+        <p class="card-text">
+          Uso predominante del fondo <strong>Space Deep Purple (#23014B)</strong> complementado con matices <strong>Nebula Purple</strong> y destellos dorados <strong>Rocket Gold (#F0A60D)</strong>.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📐</div>
+        <h3 class="card-title">Tipografía TΔLE</h3>
+        <p class="card-text">
+          Integración limpia del isotipo tipográfico original con el carácter especial Delta (<strong>Δ</strong>) estilizado en formato Sans-Serf limpio y estructurado.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3 class="card-title">Módulo de Presentación</h3>
+        <p class="card-text">
+          Estructura 100% estática optimizada para exhibición directa del proyecto final sin dependencias de backend ni formularios externos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>TΔLE — SINALOA 2026</strong>
+    <p>Guía de Identidad Visual & Proyecto Final</p>
+  </footer>
+
+</body>
+</html>
